@@ -9,7 +9,7 @@ const roundsReport2 = []
 const rCount = 100;
 
 const users = [];
-const uCount = 100;
+const uCount = 1000;
 
 for (var i = 0; i < uCount; i++) {
   const user = {
@@ -28,7 +28,7 @@ for (var i=0; i < rCount; i++) {
   const round = {
     start : faker.date.past(),
     success: faker.random.boolean(),
-    attendingUsers
+    users:  attendingUsers
   };
   roundsReport1.push(round);
 }
@@ -48,5 +48,5 @@ for (var i=0; i < rCount; i++) {
 }
 
 writeFile("./users.json", JSON.stringify(users), err => {});
-writeFile("./rounds-1.json", JSON.stringify(roundsReport1), err => {});
-writeFile("./rounds-2.json", JSON.stringify(roundsReport2), err => {});
+writeFile("./rounds.json", JSON.stringify(roundsReport1), err => {});
+writeFile("./new-rounds.json", JSON.stringify(roundsReport2), err => {});
