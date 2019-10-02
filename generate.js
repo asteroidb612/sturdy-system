@@ -6,10 +6,10 @@ var uuid = require('uuid');
 
 const roundsReport1 = []
 const roundsReport2 = []
-const rCount = 100;
+const rCount = 30;
 
 const users = [];
-const uCount = 1000;
+const uCount = 100;
 
 for (var i = 0; i < uCount; i++) {
   const user = {
