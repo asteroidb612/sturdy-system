@@ -47,6 +47,6 @@ for (var i=0; i < rCount; i++) {
   roundsReport2.push(round);
 }
 
-writeFile("./users.json", JSON.stringify(users), err => {});
+writeFile("./db.json", JSON.stringify({users}), err => {});
 writeFile("./rounds.json", JSON.stringify(roundsReport1), err => {});
 writeFile("./new-rounds.json", JSON.stringify(roundsReport2), err => {});
