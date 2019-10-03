@@ -1,13 +1,12 @@
 const axios = require('axios');
-const { readFile, writeFile } = require('fs').promises;
+const { writeFile } = require('fs');
 const _ = require('lodash')
-const db = 'https://my-json-server.typicode.com/asteroidb612/sturdy-system/';
+const db = 'http://localhost:3000/';
 
-axios.get(db + 'oldInterviews', {params: {success: true}}).then(function(report) {
-  const reportData = JSON.parse(report)
+axios.get(db + 'oldInterviews', {params: {success: true}}).then(function(response) {
   const emails = [];
-  for (const r of reportData) {
-    for (const email of r.users) {
+  for (const interview of response.data) {
+    for (const email of interview.users) {
       emails.push(email)
     }
   }
@@ -16,7 +15,9 @@ axios.get(db + 'oldInterviews', {params: {success: true}}).then(function(report)
   let output = 'email\n'
   for (var i=0; i<uniqEmails.length; i++ ) 
     output += `${uniqEmails[i]}\n`
-  writeFile('output.csv', output).catch(function() {
-      console.log("Error", err);
+  writeFile('output.csv', output, function(err) {
+    if (err) console.log("Error", err);
   });
+}).catch(err => {
+  console.log(err)
 });
