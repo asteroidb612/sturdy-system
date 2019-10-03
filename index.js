@@ -14,7 +14,7 @@ axios.get(db + 'oldInterviews', {params: {success: true}}).then(function(respons
 
   let output = 'email\n'
   for (var i=0; i<uniqEmails.length; i++ ) 
-    output += `${uniqEmails[i]}\n`
+    output = output + uniqEmails[i] + '\n';
   writeFile('output.csv', output, function(err) {
     if (err) console.log("Error", err);
   });
