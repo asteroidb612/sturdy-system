@@ -4,8 +4,8 @@ var _ = require('lodash');
 var uuid = require('uuid');
 
 
-const roundsReport1 = []
-const roundsReport2 = []
+const interviewsReport1 = []
+const interviewsReport2 = []
 const rCount = 30;
 
 const users = [];
@@ -25,12 +25,12 @@ for (var i=0; i < rCount; i++) {
   const attendingUsers = _.map(_.sampleSize(users, 2), u => {
     return u.email;
   });
-  const round = {
+  const interview = {
     start : faker.date.past(),
     success: faker.random.boolean(),
     users:  attendingUsers
   };
-  roundsReport1.push(round);
+  interviewsReport1.push(interview);
 }
 
 for (var i=0; i < rCount; i++) {
@@ -39,14 +39,12 @@ for (var i=0; i < rCount; i++) {
     u.pseudonyms.push(pseudonym);
     return pseudonym;
   });
-  const round = {
+  const interview = {
     start : faker.date.past(),
     success: faker.random.boolean(),
-    attendingUsers
+    users: attendingUsers
   };
-  roundsReport2.push(round);
+  interviewsReport2.push(interview);
 }
 
-writeFile("./db.json", JSON.stringify({users}), err => {});
-writeFile("./rounds.json", JSON.stringify(roundsReport1), err => {});
-writeFile("./new-rounds.json", JSON.stringify(roundsReport2), err => {});
+writeFile("./db.json", JSON.stringify({users, oldInterviews: interviewsReport1, newInterviews: interviewsReport2}), err => {});
